@@ -9,14 +9,14 @@ describe DockingStation  do
 	it 'responds to bike'do
 	expect(subject.bike).to eq @bike
 end
+describe '#release_bike'do
     it 'raises error' do
-    	if subject.bike == nil
         expect {(subject.release_bike)}.to raise_error("No bikes")
-    end
-end
+			end
     it 'releases working bike' do
         bike = Bike.new
         bike.dock(subject)
-        expect(subject.release_bike).to eq subject.bike
+        expect(subject.release_bike).to eq bike
     end
+	end
 end
