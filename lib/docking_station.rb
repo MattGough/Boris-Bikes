@@ -7,6 +7,8 @@ class DockingStation
   attr_accessor :bike
   
   def release_bike
-  	Bike.new
+  	raise "No bikes" if @bike == nil 
+    @bike
   end
+
 end
