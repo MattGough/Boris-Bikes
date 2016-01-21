@@ -2,13 +2,13 @@ require_relative 'bike'
 
 class DockingStation
   def initialize
-    @bike
+    @bikes = []
   end
-  attr_accessor :bike
+  attr_accessor :bikes
   
   def release_bike
-  	raise "No bikes" if @bike == nil 
-    @bike
+  	raise "No bikes" if @bikes.empty? == true
+    @bikes.pop
   end
 
 end
