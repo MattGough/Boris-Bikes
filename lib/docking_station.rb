@@ -5,10 +5,14 @@ class DockingStation
     @bikes = []
   end
   attr_accessor :bikes
-  
+
   def release_bike
-  	raise "No bikes" if @bikes.empty? == true
+  	raise "No bikes" if @bikes.empty?
     @bikes.pop
+  end
+  
+  def full?
+    @bikes.length >= 20
   end
 
 end
