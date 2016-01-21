@@ -6,47 +6,38 @@ RSpec.describe DockingStation do
 
 
   it 'return an instance of Bike' do
-    bikes = Bike.new
-    subject.dock(bikes)
+    subject.dock Bike.new
     expect(subject.release_bike).to be_a(Bike)
 	end
 
 	it 'expects bike to respond to working?' do
-    bikes = Bike.new
-		expect(bikes.working?).to eq(true)
+		expect(Bike.new.working?).to eq(true)
 	end
 
   it 'responds to dock' do
-    bikes = Bike.new
-    expect(subject.dock(bikes))
+    expect(subject.dock Bike.new)
   end
 
   it 'sees a docked bike' do
-    bikes = Bike.new
-    subject.dock(bikes)
-    expect(subject.bike)
+    subject.dock Bike.new
+    expect(subject.bikes)
   end
 
   it { is_expected.to respond_to(:dock).with(1).argument }
 
   it 'returns docked_bikes' do
-    # docking_full.release_bike
-    # @bike = docking_full.dock(bikes)
-    bikes = Bike.new
-    expect(subject.instance_variable_get(:@bike)).to eql(subject.dock(bikes))
+    expect(subject.instance_variable_get(:@bikes)).to eql(subject.dock Bike.new)
     # print "#{@bike}"
     # print " -->"
     # print "#{docking.dock(bikes)}"
   end
 
   it 'returns error' do
-    bikes = Bike.new
     expect { subject.release_bike }.to raise_error('No bikes available')
   end
 
   it 'does not accept bike being docked if a bike is already docked' do
-    bikes = Bike.new
-    subject.dock(bikes)
-    expect { subject.dock(bikes) }.to raise_error('Docking station full')
+    20.times { subject.dock Bike.new }
+    expect { subject.dock Bike.new }.to raise_error('Docking station full')
   end
 end
