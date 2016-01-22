@@ -37,7 +37,17 @@ RSpec.describe DockingStation do
   end
 
   it 'does not accept bike being docked if a bike is already docked' do
-    DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new }
+    subject.capacity.times { subject.dock Bike.new }
     expect { subject.dock Bike.new }.to raise_error('Docking station full')
+  end
+  context "when a default is specified" do
+   it 'uses that default' do
+    capacity = 20
+    docking_station = DockingStation.new(capacity)
+    expect(docking_station.capacity).to eq capacity
+  end
+end
+  it 'has a default capacity' do
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
   end
 end
